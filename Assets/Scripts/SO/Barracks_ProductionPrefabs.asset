@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3b02214b96cdd4e8f203f6c39dcc5c, type: 3}
+  m_Name: Barracks_ProductionPrefabs
+  m_EditorClassIdentifier: 
+  _productionPackages:
+  - ProductionType: 1
+    Prefab: {fileID: 6404653409571579245, guid: 9fb2fcc89e7c32f4999bb11f07d22da0, type: 3}
+    GoldCost: 500
+    LumberCost: 0
+    ProductionTime: 6
