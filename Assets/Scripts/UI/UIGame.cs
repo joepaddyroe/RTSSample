@@ -16,13 +16,17 @@ public class UIGame : MonoBehaviour
     
     // drag selector panel
     [SerializeField] private RectTransform _dragSelectorPanel;
-
+    
     // building construction panels
     [SerializeField] private GameObject _uiConstructionPanel;
     [SerializeField] private GameObject _uiProductionPanel;
+
+    private Dictionary<ISelectableEntity, Vector2> _unitScreenSpaceCoordinates = new Dictionary<ISelectableEntity, Vector2>();
+    private Camera _mainCamera;
     
     private void Awake()
     {
+        _mainCamera = Camera.main;
         UIConstructionPanel.SetGameManager(_gameManager);
         UIProductionPanel.SetGameManager(_gameManager);
     }
@@ -67,7 +71,16 @@ public class UIGame : MonoBehaviour
     {
         
     }
-    
+
+    public void UpdateUnitScreenSpaceCoordinate(ISelectableEntity unit, Vector3 position)
+    {
+        Vector2 coordinate = _mainCamera.WorldToScreenPoint(position);
+        
+        if (_unitScreenSpaceCoordinates.ContainsKey(unit))
+            _unitScreenSpaceCoordinates[unit] = coordinate;
+        else
+            _unitScreenSpaceCoordinates.Add(unit, coordinate);
+    }
     
     
     // set drag selection state
@@ -75,28 +88,34 @@ public class UIGame : MonoBehaviour
     {
         _dragSelectorPanel.transform.gameObject.SetActive(visible);
     }
-    public void SetDragSelectorSizeAndPosition(Vector2 startPoint, Vector2 endPoint)
+    public List<ISelectableEntity> SetDragSelectorSizeAndPosition(Vector2 startPoint, Vector2 endPoint)
     {
+
+        Rect dragRect = new Rect();
+        dragRect.xMin = endPoint.x < startPoint.x ? endPoint.x : startPoint.x;
+        dragRect.xMax = endPoint.x >= startPoint.x ? endPoint.x : startPoint.x;
+        
+        dragRect.yMin = endPoint.y < startPoint.y ? endPoint.y : startPoint.y;
+        dragRect.yMax = endPoint.y >= startPoint.y ? endPoint.y : startPoint.y;
+        
         float width = Mathf.Abs(endPoint.x - startPoint.x) / _parentCanvas.scaleFactor;
         float height = Mathf.Abs(endPoint.y - startPoint.y) / _parentCanvas.scaleFactor;
+        
         _dragSelectorPanel.sizeDelta = new Vector2(width, height);
-
-        //_dragSelectorPanel.anchoredPosition = (startPoint - new Vector2(Screen.width/2, Screen.height/2));
         _dragSelectorPanel.anchoredPosition = (startPoint + new Vector2((endPoint.x - startPoint.x)/2, (endPoint.y - startPoint.y)/2)) - new Vector2((float)Screen.width/2, (float)Screen.height/2);
         _dragSelectorPanel.anchoredPosition /= _parentCanvas.scaleFactor;
+
+        List<ISelectableEntity> dragSelected = new List<ISelectableEntity>();
+        
+        foreach (var unit in _unitScreenSpaceCoordinates)
+        {
+            if (dragRect.Contains(unit.Value))
+            {
+                dragSelected.Add(unit.Key);
+            }
+        }
+
+        return dragSelected;
     }
     
-    
-}
-
-public enum BuildingConstructionPanel
-{
-    TownHall,
-    Barracks
-}
-
-public enum UnitConstructionPanel
-{
-    Peasant,
-    Footman
 }

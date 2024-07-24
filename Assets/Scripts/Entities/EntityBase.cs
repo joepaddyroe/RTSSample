@@ -39,4 +39,5 @@ public class EntityBase : MonoBehaviour, ISelectableEntity
     {
         _selected = false;
     }
+    
 }

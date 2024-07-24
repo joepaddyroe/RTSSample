@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerInteractionManager : MonoBehaviour
@@ -17,6 +18,12 @@ public class PlayerInteractionManager : MonoBehaviour
     private bool _skipInteractFrame;
     
     private PlayerInteractionStateMachine _playerInteractionStateMachine;
+
+    public bool DebugDrawDragSelection;
+    private Vector3 _debugDragSelectionStartPosition;
+    private Vector3 _debugDragSelectionEndPosition;
+    private Vector3 _debugDragSelectionPosition;
+    private Vector3 _debugDragSelctionSize;
     
     public List<ISelectableEntity> CurrentlySelected = new List<ISelectableEntity>();
     

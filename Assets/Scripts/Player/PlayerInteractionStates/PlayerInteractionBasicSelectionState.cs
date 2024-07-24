@@ -11,6 +11,8 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
     
     private bool _mouseSelectionDown;
     private bool _mouseSelectionDragging;
+    private bool _mouseDraggingThresholdMet;
+    
     private Vector3 _mouseSelectionDraggingStartPoint;
     private Vector2 _mousePositionStartPoint;
     private Vector3 _mouseSelectionDraggingCurrentPoint;
@@ -64,6 +66,7 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
                 }
             }
             _mouseSelectionDown = false;
+            _mouseDraggingThresholdMet = false;
             DoMouseDraggingRelease();
         }
         
@@ -204,50 +207,32 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
     {
         _mouseSelectionDragging = true;
     }
+    
     private void DoMouseDraggingSelection()
     {
-        
         _mouseSelectionDraggingCurrentPoint = GetMouseSelectionWorldPoint();
 
         // dont bother deselecting or processing drag select if its not beyond this length threshold
         // stops unwanted deselects on slow clickers ;)
-        if (Vector3.Distance(_mouseSelectionDraggingStartPoint, _mouseSelectionDraggingCurrentPoint) < 0.5f)
+        if (!_mouseDraggingThresholdMet && Vector3.Distance(_mouseSelectionDraggingStartPoint, _mouseSelectionDraggingCurrentPoint) > 0.5f)
         {
-            return;
+            _mouseDraggingThresholdMet = true;
         }
+
+        if (!_mouseDraggingThresholdMet)
+            return;
         
         // ui stuff
         _playerInteractionManager.UIGame.SetDragSelectorVisible(true);
         _mousePositionCurrentPoint = Input.mousePosition;
-        _playerInteractionManager.UIGame.SetDragSelectorSizeAndPosition(_mousePositionStartPoint, _mousePositionCurrentPoint);
         
-        
-        // world stuff
+        _dragSelected = _playerInteractionManager.UIGame.SetDragSelectorSizeAndPosition(_mousePositionStartPoint, _mousePositionCurrentPoint);
 
-        // the midpoint between the two drag points with vertical position adjusted 
-        Vector3 centre = _mouseSelectionDraggingStartPoint + (_mouseSelectionDraggingCurrentPoint - _mouseSelectionDraggingStartPoint)/2;
-        centre.y = 1;
-        
-        // half of the length of the line between each coordinate with absolute applied to avoid inversion 
-        Vector3 size = new Vector3(
-            Mathf.Abs(_mouseSelectionDraggingCurrentPoint.x - _mouseSelectionDraggingStartPoint.x)/2,
-            2,
-            Mathf.Abs(_mouseSelectionDraggingCurrentPoint.z - _mouseSelectionDraggingStartPoint.z)/2
-        );
-        
-        _dragSelected = new List<ISelectableEntity>();
-        
-        RaycastHit[] hits = Physics.BoxCastAll(centre, size, Vector3.up);
-        if (hits.Length > 0)
+        if (_dragSelected.Count > 0)
         {
-            foreach (RaycastHit hit in hits)
+            foreach (ISelectableEntity entity in _dragSelected)
             {
-                ISelectableEntity entity = hit.collider.gameObject.GetComponent<ISelectableEntity>();
-                if (entity != null)
-                {
-                    _dragSelected.Add(entity);
-                    entity.Select();
-                }
+                entity.Select();
             }
             
             foreach (ISelectableEntity currentSelection in _playerInteractionManager.CurrentlySelected)
@@ -259,8 +244,8 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
             }
 
             _playerInteractionManager.CurrentlySelected = _dragSelected;
-
-        } else
+        }
+        else
         {
             foreach (ISelectableEntity currentSelection in _playerInteractionManager.CurrentlySelected)
             {

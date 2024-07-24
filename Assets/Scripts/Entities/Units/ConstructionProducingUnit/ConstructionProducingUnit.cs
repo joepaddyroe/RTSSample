@@ -40,6 +40,7 @@ public class ConstructionProducingUnit : UnitBase, IWorkAssignableEntity
     void Update()
     {
         _stateMachine.Tick();
+        UpdateScreenSpaceCoordinate(this);
     }
 
     public void GoToIdlState()

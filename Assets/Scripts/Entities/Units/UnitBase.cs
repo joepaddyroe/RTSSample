@@ -20,4 +20,9 @@ public class UnitBase : EntityBase, IMoveableEntity
     {
         
     }
+
+    public virtual void UpdateScreenSpaceCoordinate(UnitBase unitBase)
+    {
+        _uiGame.UpdateUnitScreenSpaceCoordinate(unitBase, transform.position);
+    }
 }
