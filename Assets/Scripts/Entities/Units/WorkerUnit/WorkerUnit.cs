@@ -166,6 +166,7 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
 
                 if (closestTree)
                 {
+                    closestTree.SetReserved();
                     return closestTree;
                 }
             }

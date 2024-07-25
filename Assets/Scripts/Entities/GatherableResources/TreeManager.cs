@@ -15,7 +15,7 @@ public class TreeManager : BuildingBase, IWorkTargetEntity, IResourceGatherableT
         gatherer.GatherLumber(_lumberAmount);
         _lumberAmount -= _lumberAmount;
 
-        if (_lumberAmount == 0)
+        if (_lumberAmount <= 0)
         {
             // need to do fancy tree falling animation here
             if (!_destroyed)
