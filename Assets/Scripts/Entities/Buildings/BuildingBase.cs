@@ -11,10 +11,12 @@ public class BuildingBase : EntityBase, IWorkTargetEntity
     protected bool _constructed;
     protected float _constructionProgress;
     
+    [SerializeField] private BuildingType _buildingType;
     [SerializeField] protected bool _preConstructed;
     [SerializeField] protected float _constructionProgressTarget;
     [SerializeField] protected Animator _animator;
 
+    public BuildingType BuildingType => _buildingType;
     public bool Constructed => _constructed;
     
     public void Start()
@@ -23,6 +25,7 @@ public class BuildingBase : EntityBase, IWorkTargetEntity
         {
             Construct(_constructionProgressTarget);
             _constructed = true;
+            EntityManager.Instance.AddBuilding(this);
         }
     }
 

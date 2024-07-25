@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySelectionUI: {fileID: 3916928653562433394, guid: 26001bdc3692d0d4bb913f1cc1de0541, type: 3}
+  _buildingType: 4
   _preConstructed: 0
   _constructionProgressTarget: 10
   _animator: {fileID: 199604094911400620}

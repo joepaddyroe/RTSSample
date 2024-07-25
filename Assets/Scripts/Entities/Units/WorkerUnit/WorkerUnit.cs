@@ -25,10 +25,16 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
     private int _carryingGoldAmount;
     private int _carryingLumberAmount;
     private BuildingBase _currentTargetResource;
+    private Vector3 _previousTargetResourceLocation;
+    private ResourceType _currentResourceType;
+    [SerializeField] private LayerMask _resourceLayerMask;
 
     public int CarryingGoldAmount => _carryingGoldAmount;
     public int CarryingLumberAmount => _carryingLumberAmount;
     public BuildingBase CurrentTargetResource => _currentTargetResource;
+    public Vector3 PreviousTargetResourceLocation => _previousTargetResourceLocation;
+    public ResourceType CurrentResourceType => _currentResourceType;
+    public LayerMask ResourceLayerMask => _resourceLayerMask;
     
     // Start is called before the first frame update
     void Awake()
@@ -88,8 +94,9 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
         _stateMachine.SetState(new WorkerUnitGatheringResourceState(this, targetResource, _resourceGatheringInterval, _resourcePoint));
     }
 
-    public void GoToReturningResourceState()
+    public void GoToReturningResourceState(ResourceType currentResourceType)
     {
+        _currentResourceType = currentResourceType;
         _stateMachine.SetState(new WorkerUnitReturningResourceState(this));
     }
     
@@ -122,7 +129,49 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
     public void SendToGatherResource(BuildingBase building)
     {
         _currentTargetResource = building;
+        _previousTargetResourceLocation = building.transform.position;
         GoToTargetResource(building as IResourceGatherableTargetEntity, building.transform.position);
+    }
+
+    public BuildingBase FindNearestResourceOfType(Vector3 previousTargetLocation, ResourceType resourceType)
+    {
+        BuildingBase closest = null;
+        
+        Collider[] resourceColliders = Physics.OverlapSphere(previousTargetLocation, 10, _resourceLayerMask);
+        if (resourceColliders != null && resourceColliders.Length > 0)
+        {
+            // search colliders for closest tree to previous tree taken
+            if (resourceType == ResourceType.Lumber)
+            {
+                TreeManager closestTree = null;
+                float closestTreeDistance = Mathf.Infinity;
+                    
+                foreach (Collider resourceCollider in resourceColliders)
+                {
+                    if (resourceCollider.GetComponent<TreeManager>())
+                    {
+                        TreeManager tree = resourceCollider.GetComponent<TreeManager>();
+                        if (!tree.Reserved)
+                        {
+                            float distance = Vector3.Distance(transform.position,
+                                tree.transform.position);
+                            if (distance < closestTreeDistance)
+                            {
+                                closestTreeDistance = distance;
+                                closestTree = tree;
+                            }
+                        }
+                    }
+                }
+
+                if (closestTree)
+                {
+                    return closestTree;
+                }
+            }
+        }
+
+        return null;
     }
 
     public void SendToResourceGathering(BuildingBase building)
@@ -138,4 +187,11 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
     {
         _carryingLumberAmount = amount;
     }
+}
+
+public enum ResourceType
+{
+    None,
+    Gold,
+    Lumber
 }

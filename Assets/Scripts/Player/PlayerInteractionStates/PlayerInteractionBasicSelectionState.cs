@@ -164,11 +164,26 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
                                 }
                                 else
                                 {
-                                    Debug.Log("Should go here...");
                                     IResourceGatherableTargetEntity targetResource = building as IResourceGatherableTargetEntity;
                                     if (targetResource != null)
                                     {
-                                        worker.SendToGatherResource(building);
+                                        bool reserved = false;
+                                        if(building as TreeManager)
+                                            reserved = (building as TreeManager).Reserved;
+
+                                        if (!reserved)
+                                        {
+                                            (building as TreeManager).SetReserved();
+                                            worker.SendToGatherResource(building);
+                                        }
+                                        else
+                                        {
+                                            BuildingBase nearbyResource =
+                                                (worker as WorkerUnit).FindNearestResourceOfType(
+                                                    building.transform.position,
+                                                    ResourceType.Lumber);
+                                            worker.SendToGatherResource(nearbyResource);   
+                                        }
                                     }
                                 }
                             }

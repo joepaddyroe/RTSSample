@@ -30,7 +30,13 @@ public class WorkerUnitGatheringResourceState : StateBase
             if (_targetResource != null)
             {
                 _targetResource.GatherResource(_workerUnit as IResourceGatheringAssignableEntity);
-                _workerUnit.GoToReturningResourceState();
+
+                ResourceType resourceType = ResourceType.None;
+                if (_targetResource as MineManager)
+                    resourceType = ResourceType.Gold;
+                if (_targetResource as TreeManager)
+                    resourceType = ResourceType.Lumber;
+                _workerUnit.GoToReturningResourceState(resourceType);
             }
         }
     }
@@ -45,5 +51,9 @@ public class WorkerUnitGatheringResourceState : StateBase
     public override void Exit()
     {
         base.Exit();
+        
+        if(_targetResource as TreeManager)
+            (_targetResource as TreeManager).SetUnReserved();
+        
     }
 }

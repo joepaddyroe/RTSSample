@@ -41,6 +41,7 @@ public class PlayerInteractionPlacingConstructionState : PlayerInteractionStateB
         base.Enter();
         _mainCamera = Camera.main;
         _construction = GameObject.Instantiate(_constructionPrefab);
+        EntityManager.Instance.AddBuilding(_construction.GetComponent<BuildingBase>());
     }
 
     public override void Exit()

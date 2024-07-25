@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySelectionUI: {fileID: 3916928653562433394, guid: c2c415015410dd94fbf9f22e8efb202b, type: 3}
+  _unitType: 1
   _agent: {fileID: 8536263054417446021}
   _attackInterval: 2
   _attackPoint: 2
