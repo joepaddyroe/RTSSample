@@ -72,9 +72,9 @@ public class PlayerInteractionManager : MonoBehaviour
     {
         foreach (ISelectableEntity entity in CurrentlySelected)
         {
-            ConstructionProducingUnit constructionProducingUnit = entity as ConstructionProducingUnit;
-            if(constructionProducingUnit)
-                constructionProducingUnit.GoToTargetConstruction(targetConstruction, targetBuildSite);
+            WorkerUnit workerUnit = entity as WorkerUnit;
+            if(workerUnit)
+                workerUnit.GoToTargetConstruction(targetConstruction, targetBuildSite);
         }
     }
 }

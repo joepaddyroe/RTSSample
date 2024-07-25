@@ -162,6 +162,15 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
                                     worker.SendToConstructBuilding(building);
                                     unitsInteracted = true;
                                 }
+                                else
+                                {
+                                    Debug.Log("Should go here...");
+                                    IResourceGatherableTargetEntity targetResource = building as IResourceGatherableTargetEntity;
+                                    if (targetResource != null)
+                                    {
+                                        worker.SendToGatherResource(building);
+                                    }
+                                }
                             }
                         }
                     }

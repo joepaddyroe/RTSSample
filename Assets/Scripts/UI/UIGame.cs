@@ -45,11 +45,11 @@ public class UIGame : MonoBehaviour
             UIProductionPanel.Init(unitProductionBuilding, productionPackages);
     }
     
-    public void SetConstructionProducingUnitSelected(bool visible, ConstructionProducingUnit constructionProducingUnit = null, List<ConstructionPackage> constructionPackages = null)
+    public void SetWorkerUnitSelected(bool visible, WorkerUnit workerUnit = null, List<ConstructionPackage> constructionPackages = null)
     {
         _uiConstructionPanel.SetActive(visible);
         if(visible)
-            UIConstructionPanel.Init(constructionProducingUnit, constructionPackages);
+            UIConstructionPanel.Init(workerUnit, constructionPackages);
     }
     
     // Entity UI and Selection Objects

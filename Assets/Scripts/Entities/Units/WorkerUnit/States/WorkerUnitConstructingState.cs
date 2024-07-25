@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConstructionProducingUnitConstructingState : StateBase
+public class WorkerUnitConstructingState : StateBase
 {
-    private ConstructionProducingUnit _constructionProducingUnit;
+    private WorkerUnit _workerUnit;
     private BuildingBase _targetConstruction;
     private float _constructionInterval;
     private float _constructionTimer;
     private float _constructionPoint;
     
-    public ConstructionProducingUnitConstructingState(ConstructionProducingUnit constructionProducingUnit, BuildingBase targetConstruction, float constructionInterval, float constructionPoint)
+    public WorkerUnitConstructingState(WorkerUnit workerUnit, BuildingBase targetConstruction, float constructionInterval, float constructionPoint)
     {
-        _constructionProducingUnit = constructionProducingUnit;
+        _workerUnit = workerUnit;
         _targetConstruction = targetConstruction;
         _constructionInterval = constructionInterval;
         _constructionPoint = constructionPoint;
@@ -33,7 +33,7 @@ public class ConstructionProducingUnitConstructingState : StateBase
                 {
                     // do construction complete announcement/event stuff here
                     Debug.Log("The construction is complete!");
-                    _constructionProducingUnit.GoToIdlState();
+                    _workerUnit.GoToIdlState();
                 }
                 else
                 {
@@ -47,7 +47,7 @@ public class ConstructionProducingUnitConstructingState : StateBase
     {
         base.Enter();
         
-        _constructionProducingUnit.Agent.SetDestination(_constructionProducingUnit.transform.position);
+        _workerUnit.Agent.SetDestination(_workerUnit.transform.position);
     }
 
     public override void Exit()

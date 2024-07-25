@@ -20,7 +20,10 @@ public class BuildingBase : EntityBase, IWorkTargetEntity
     public void Start()
     {
         if (_preConstructed)
+        {
             Construct(_constructionProgressTarget);
+            _constructed = true;
+        }
     }
 
     public virtual bool Construct(float constructionPoint)

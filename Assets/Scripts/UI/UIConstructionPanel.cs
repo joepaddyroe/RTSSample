@@ -8,10 +8,10 @@ public class UIConstructionPanel : MonoBehaviour
     [SerializeField] private GameObject _uiConstructionOptionPrefab;
     [SerializeField] private GameManager _gameManager;
     
-    private ConstructionProducingUnit _constructionProducingUnit;
+    private WorkerUnit _constructionProducingUnit;
     private List<ConstructionPackage> _constructionPackages;
     
-    public void Init(ConstructionProducingUnit constructionProducingUnit, List<ConstructionPackage> constructionPackages)
+    public void Init(WorkerUnit constructionProducingUnit, List<ConstructionPackage> constructionPackages)
     {
         _constructionProducingUnit = constructionProducingUnit;
         _constructionPackages = constructionPackages;
