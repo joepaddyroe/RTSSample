@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -28,6 +29,13 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        bool offScreen = (Input.mousePosition.x < 0 || Input.mousePosition.x > Screen.width) ||
+                         (Input.mousePosition.y < 0 || Input.mousePosition.y > Screen.height);
+        
+        if(offScreen)
+            return;
+        
         float horizontalBorderWidth = (Screen.width * _cameraHorizontalBorder);
         float verticalBorderWidth = (Screen.height * _cameraVerticalBorder);
         

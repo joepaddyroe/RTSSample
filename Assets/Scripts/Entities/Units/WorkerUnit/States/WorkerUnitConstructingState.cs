@@ -32,12 +32,12 @@ public class WorkerUnitConstructingState : StateBase
                 if (_targetConstruction.Construct(_constructionPoint))
                 {
                     // do construction complete announcement/event stuff here
-                    Debug.Log("The construction is complete!");
+                    // Debug.Log("The construction is complete!");
                     _workerUnit.GoToIdlState();
                 }
                 else
                 {
-                    Debug.Log("The construction is is still underway...");
+                    // Debug.Log("The construction is is still underway...");
                 }
             }
         }

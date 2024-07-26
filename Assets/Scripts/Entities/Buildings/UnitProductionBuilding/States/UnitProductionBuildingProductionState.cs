@@ -32,7 +32,9 @@ public class UnitProductionBuildingProductionState : StateBase
     {
         GameObject unit = GameObject.Instantiate(_productionPackage.Prefab, _unitProductionBuilding.transform.position,
             Quaternion.identity);
+        
         EntityManager.Instance.AddUnit(unit.GetComponent<UnitBase>());
+        
         IMoveableEntity moveableEntity = unit.GetComponent<IMoveableEntity>();
         if(moveableEntity != null)
             moveableEntity.GoToTravellingState(_unitProductionBuilding.ConstructionLocation.position);

@@ -36,6 +36,7 @@ public class FootmanManager : UnitBase
     void Update()
     {
         _stateMachine.Tick();
+        UpdateScreenSpaceCoordinate(this);
     }
 
     public void GoToIdlState()
