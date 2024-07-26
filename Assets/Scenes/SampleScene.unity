@@ -65654,6 +65654,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3745558046952155832, guid: 6a0288bc3bd668449b5febdc81fd917f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4545bca9e1558324597fb70ac3d6b191, type: 2}
     - target: {fileID: 6818453256440961053, guid: 6a0288bc3bd668449b5febdc81fd917f, type: 3}
       propertyPath: m_Name
       value: Mine
@@ -65724,6 +65728,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 4791688396275215770, guid: 92d7d6a7d2de105458589208cbbd6e7d, type: 3}
+      propertyPath: _cameraDolly
+      value: 
+      objectReference: {fileID: 1175075194}
     - target: {fileID: 7528225813170343471, guid: 92d7d6a7d2de105458589208cbbd6e7d, type: 3}
       propertyPath: _uiGame
       value: 

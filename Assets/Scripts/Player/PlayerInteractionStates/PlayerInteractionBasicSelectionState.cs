@@ -168,21 +168,26 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
                                     if (targetResource != null)
                                     {
                                         bool reserved = false;
-                                        if(building as TreeManager)
+                                        if (building as TreeManager)
+                                        {
                                             reserved = (building as TreeManager).Reserved;
 
-                                        if (!reserved)
+                                            if (!reserved)
+                                            {
+                                                (building as TreeManager).SetReserved();
+                                                worker.SendToGatherResource(building);
+                                            }
+                                            else
+                                            {
+                                                BuildingBase nearbyResource =
+                                                    (worker as WorkerUnit).FindNearestResourceOfType(
+                                                        building.transform.position,
+                                                        ResourceType.Lumber);
+                                                worker.SendToGatherResource(nearbyResource);   
+                                            }
+                                        } else if (building as MineManager)
                                         {
-                                            (building as TreeManager).SetReserved();
                                             worker.SendToGatherResource(building);
-                                        }
-                                        else
-                                        {
-                                            BuildingBase nearbyResource =
-                                                (worker as WorkerUnit).FindNearestResourceOfType(
-                                                    building.transform.position,
-                                                    ResourceType.Lumber);
-                                            worker.SendToGatherResource(nearbyResource);   
                                         }
                                     }
                                 }

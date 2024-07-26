@@ -79,6 +79,7 @@ Transform:
   m_Children:
   - {fileID: 3842607884892467481}
   - {fileID: 478908649780894380}
+  - {fileID: 1721253424874788090}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6955196521669586041
@@ -130,3 +131,58 @@ MonoBehaviour:
     m_Bits: 64
   _mouseSelectionDraggingThreshold: 0.3
   _uiGame: {fileID: 0}
+  DebugDrawDragSelection: 0
+--- !u!1 &8852737631624379761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721253424874788090}
+  - component: {fileID: 4791688396275215770}
+  m_Layer: 0
+  m_Name: CameraManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1721253424874788090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8852737631624379761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3391040798893662489}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4791688396275215770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8852737631624379761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f075897624f52b4090a59bc57452833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraDolly: {fileID: 0}
+  _cameraHorizontalSpeed: 20
+  _cameraVerticalSpeed: 20
+  _cameraHorizontalBorder: 0.05
+  _cameraVerticalBorder: 0.05
+  _lerpCoef: 0.05
+  _cameraHorizontalMin: -20
+  _cameraHorizontalMax: 20
+  _cameraVerticalMin: -20
+  _cameraVerticalMax: 20
