@@ -137,7 +137,7 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
     {
         BuildingBase closest = null;
         
-        Collider[] resourceColliders = Physics.OverlapSphere(previousTargetLocation, 10, _resourceLayerMask);
+        Collider[] resourceColliders = Physics.OverlapSphere(previousTargetLocation, 4, _resourceLayerMask);
         if (resourceColliders != null && resourceColliders.Length > 0)
         {
             // search colliders for closest tree to previous tree taken
@@ -153,7 +153,7 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
                         TreeManager tree = resourceCollider.GetComponent<TreeManager>();
                         if (!tree.Reserved)
                         {
-                            float distance = Vector3.Distance(transform.position,
+                            float distance = Vector3.Distance(previousTargetLocation,
                                 tree.transform.position);
                             if (distance < closestTreeDistance)
                             {

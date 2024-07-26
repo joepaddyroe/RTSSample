@@ -83,6 +83,7 @@ MonoBehaviour:
   _constructionProgressTarget: 1
   _animator: {fileID: 8109513310495522335}
   _lumberAmount: 100
+  _reserved: 0
 --- !u!95 &8109513310495522335
 Animator:
   serializedVersion: 5
@@ -159,6 +160,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d4e0c3c6af9c12c4c88a89a75af88f09, type: 3}
       propertyPath: m_Name
       value: Tree_Basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d4e0c3c6af9c12c4c88a89a75af88f09, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
