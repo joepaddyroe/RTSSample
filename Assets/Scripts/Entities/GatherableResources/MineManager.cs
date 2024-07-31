@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MineManager : BuildingBase, IWorkTargetEntity, IResourceGatherableTargetEntity
+public class MineManager : ResourceBase, IResourceGatherableTargetEntity
 {
     [SerializeField] private int _goldAmount;
     

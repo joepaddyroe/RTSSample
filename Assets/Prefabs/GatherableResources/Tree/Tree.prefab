@@ -78,9 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySelectionUI: {fileID: 0}
-  _buildingType: 0
-  _preConstructed: 1
-  _constructionProgressTarget: 1
+  _resourceType: 2
   _animator: {fileID: 8109513310495522335}
   _lumberAmount: 100
   _reserved: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IResourceGatheringAssignableEntity
 {
-    void SendToResourceGathering(BuildingBase building);
+    void SendToResourceGathering(ResourceBase resource);
     void GatherGold(int amount);
     void GatherLumber(int amount);
 }

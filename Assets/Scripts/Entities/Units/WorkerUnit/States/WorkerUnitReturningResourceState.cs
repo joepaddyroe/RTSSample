@@ -21,23 +21,25 @@ public class WorkerUnitReturningResourceState : StateBase
                 _workerUnit.SendToGatherResource(_workerUnit.CurrentTargetResource);
             else
             {
-                if (_workerUnit.CurrentResourceType == ResourceType.Gold){
-                    _workerUnit.GoToTravellingState(_townHallLocation + new Vector3(3,0,0));
-                    return;
-                }
+                _workerUnit.SendToReGatherResource();
 
-                TreeManager closestTree = _workerUnit.FindNearestResourceOfType(
-                    _workerUnit.PreviousTargetResourceLocation,
-                    ResourceType.Lumber) as TreeManager;
-                if (closestTree)
-                {
-                    closestTree.SetReserved();
-                    _workerUnit.SendToGatherResource(closestTree);
-                    return;
-                }
-                
-                // if all else fails, just walk to the right hand side of the town hall
-                _workerUnit.GoToTravellingState(_townHallLocation + new Vector3(3,0,0));
+                // if (_workerUnit.CurrentResourceType == ResourceType.Gold){
+                //     _workerUnit.GoToTravellingState(_townHallLocation + new Vector3(3,0,0));
+                //     return;
+                // }
+                //
+                // TreeManager closestTree = _workerUnit.FindNearestResourceOfType(
+                //     _workerUnit.PreviousTargetResourceLocation,
+                //     ResourceType.Lumber) as TreeManager;
+                // if (closestTree)
+                // {
+                //     closestTree.SetReserved();
+                //     _workerUnit.SendToGatherResource(closestTree);
+                //     return;
+                // }
+                //
+                // // if all else fails, just walk to the right hand side of the town hall
+                // _workerUnit.GoToTravellingState(_townHallLocation + new Vector3(3,0,0));
             }
         }
     }

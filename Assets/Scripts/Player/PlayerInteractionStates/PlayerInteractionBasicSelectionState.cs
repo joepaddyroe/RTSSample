@@ -162,35 +162,12 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
                                     worker.SendToConstructBuilding(building);
                                     unitsInteracted = true;
                                 }
-                                else
-                                {
-                                    IResourceGatherableTargetEntity targetResource = building as IResourceGatherableTargetEntity;
-                                    if (targetResource != null)
-                                    {
-                                        bool reserved = false;
-                                        if (building as TreeManager)
-                                        {
-                                            reserved = (building as TreeManager).Reserved;
-
-                                            if (!reserved)
-                                            {
-                                                (building as TreeManager).SetReserved();
-                                                worker.SendToGatherResource(building);
-                                            }
-                                            else
-                                            {
-                                                BuildingBase nearbyResource =
-                                                    (worker as WorkerUnit).FindNearestResourceOfType(
-                                                        building.transform.position,
-                                                        ResourceType.Lumber);
-                                                worker.SendToGatherResource(nearbyResource);   
-                                            }
-                                        } else if (building as MineManager)
-                                        {
-                                            worker.SendToGatherResource(building);
-                                        }
-                                    }
-                                }
+                            }
+                            
+                            ResourceBase resource = workTarget as ResourceBase;
+                            if (resource != null)
+                            {
+                                worker.SendToGatherResource(resource);
                             }
                         }
                     }

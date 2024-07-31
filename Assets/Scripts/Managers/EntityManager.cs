@@ -102,3 +102,10 @@ public enum BuildingType
     Farm,
     Barracks
 }
+
+public enum ResourceType
+{
+    None,
+    Gold,
+    Lumber
+}

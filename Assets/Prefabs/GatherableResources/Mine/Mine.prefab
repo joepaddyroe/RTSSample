@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2030836293312516465}
   - component: {fileID: 8839172299424064622}
   - component: {fileID: 3745558046952155832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,8 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySelectionUI: {fileID: 0}
-  _preConstructed: 1
-  _constructionProgressTarget: 0
+  _resourceType: 1
   _animator: {fileID: 3745558046952155832}
   _goldAmount: 100000
 --- !u!95 &3745558046952155832

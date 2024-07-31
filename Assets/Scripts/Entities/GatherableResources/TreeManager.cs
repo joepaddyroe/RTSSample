@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TreeManager : BuildingBase, IWorkTargetEntity, IResourceGatherableTargetEntity
+public class TreeManager : ResourceBase, IWorkTargetEntity, IResourceGatherableTargetEntity
 {
     [SerializeField] private int _lumberAmount;
     [SerializeField] private bool _reserved;
