@@ -65601,6 +65601,10 @@ PrefabInstance:
       propertyPath: _barracksConstructionPanel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8768728189772283684, guid: 56183cd027a68874ba999c8c9043c795, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
