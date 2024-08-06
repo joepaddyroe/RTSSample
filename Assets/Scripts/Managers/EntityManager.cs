@@ -70,7 +70,7 @@ public class EntityManager : MonoBehaviour
             if(_buildings[building.BuildingType].Contains(building))
                 _buildings[building.BuildingType].Remove(building);
     }
-    public BuildingBase GetClosestBuilding(Vector3 position, BuildingType buildingType)
+    public BuildingBase GetClosestBuilding(Vector3 position, BuildingType buildingType, bool shouldBeConstructed = false)
     {
         BuildingBase returnBuilding = null;
         float closest = Mathf.Infinity;
@@ -79,6 +79,8 @@ public class EntityManager : MonoBehaviour
             float distance = Vector3.Distance(position, building.transform.position);
             if (distance < closest)
             {
+                if(shouldBeConstructed && building.Constructed == false)
+                    continue;
                 closest = distance;
                 returnBuilding = building;
             }   
