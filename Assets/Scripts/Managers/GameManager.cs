@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,10 +9,32 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int _currentGold;
     [SerializeField] private int _currentLumber;
-    
 
+
+    [SerializeField] private UIGame _uiGame;
     [SerializeField] private PlayerInteractionManager _playerInteractionManager;
     [SerializeField] private ConstructionPrefabsSO _constructionPrefabs;
+
+    private static GameManager _instance;
+    public static GameManager Instance => _instance;
+    
+    private void Awake()
+    {
+        _instance = this;
+        _uiGame.UIResourcePanel.SetUIResources(_currentGold, _currentLumber);
+    }
+
+    public void AddGold(int amount)
+    {
+        _currentGold += amount;
+        _uiGame.UIResourcePanel.SetUIResources(_currentGold, _currentLumber);
+    }
+    
+    public void AddLumber(int amount)
+    {
+        _currentLumber += amount;
+        _uiGame.UIResourcePanel.SetUIResources(_currentGold, _currentLumber);
+    }
     
 
     public void StartConstruction(ConstructionType constructionType)
@@ -25,6 +49,7 @@ public class GameManager : MonoBehaviour
             _currentGold -= package.GoldCost;
             _currentLumber -= package.LumberCost;
             _playerInteractionManager.SetPlacingConstructionState(package.Prefab);
+            _uiGame.UIResourcePanel.SetUIResources(_currentGold, _currentLumber);
         }
         else
         {
@@ -34,6 +59,11 @@ public class GameManager : MonoBehaviour
                 + (!enoughGold && !enoughLumber ? " and " : "") 
                 + (!enoughLumber ? "Lumber" : "");
             Debug.Log(failMessage);
+            
+            if(!enoughGold)
+                _uiGame.UIResourcePanel.FlashResourceDenied(ResourceType.Gold);
+            if(!enoughLumber)
+                _uiGame.UIResourcePanel.FlashResourceDenied(ResourceType.Lumber);
         }
     }
 }

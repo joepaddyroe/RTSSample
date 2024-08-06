@@ -17,29 +17,22 @@ public class WorkerUnitReturningResourceState : StateBase
 
         if (Vector3.Distance(_townHallLocation, _workerUnit.transform.position) < 2f)
         {
+
+            switch (_workerUnit.CurrentResourceType)
+            {
+                case ResourceType.Gold:
+                    GameManager.Instance.AddGold(100);
+                    break;
+                case ResourceType.Lumber:
+                    GameManager.Instance.AddLumber(100);
+                    break;
+            }
+            
             if(_workerUnit.CurrentTargetResource)
                 _workerUnit.SendToGatherResource(_workerUnit.CurrentTargetResource);
             else
             {
                 _workerUnit.SendToReGatherResource();
-
-                // if (_workerUnit.CurrentResourceType == ResourceType.Gold){
-                //     _workerUnit.GoToTravellingState(_townHallLocation + new Vector3(3,0,0));
-                //     return;
-                // }
-                //
-                // TreeManager closestTree = _workerUnit.FindNearestResourceOfType(
-                //     _workerUnit.PreviousTargetResourceLocation,
-                //     ResourceType.Lumber) as TreeManager;
-                // if (closestTree)
-                // {
-                //     closestTree.SetReserved();
-                //     _workerUnit.SendToGatherResource(closestTree);
-                //     return;
-                // }
-                //
-                // // if all else fails, just walk to the right hand side of the town hall
-                // _workerUnit.GoToTravellingState(_townHallLocation + new Vector3(3,0,0));
             }
         }
     }

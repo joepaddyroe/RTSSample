@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
 {
@@ -35,6 +36,9 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            
             // set the drag start point here so its ready when th drag timer threshold is met
             // otherwise we get a start point that is offset by mouse drag time
             if (!_mouseSelectionDown)
@@ -48,6 +52,9 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
 
         if (Input.GetMouseButtonUp(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            
             if (_mouseSelectionDraggingTimer < _playerInteractionManager.MouseSelectionDraggingThreshold)
             {
                 // check if current selected units should be assigned to work

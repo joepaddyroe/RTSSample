@@ -126,6 +126,7 @@ MonoBehaviour:
   _dragSelectorPanel: {fileID: 3227864106478367183}
   _uiConstructionPanel: {fileID: 7442309421667778427}
   _uiProductionPanel: {fileID: 6680478204715517841}
+  _uiResourcePanel: {fileID: 5298044653681965767}
 --- !u!1 &606782697861921231
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,8 +732,9 @@ GameObject:
   - component: {fileID: 6158288680058535574}
   - component: {fileID: 4329911649621872075}
   - component: {fileID: 4037527630628844132}
+  - component: {fileID: 5298044653681965767}
   m_Layer: 5
-  m_Name: UITopBar
+  m_Name: UIResourcePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -799,6 +801,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5298044653681965767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7309020207979992819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b58c92403045a792f9feb4b6b490b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _goldValue: {fileID: 4399648091608807320}
+  _lumberValue: {fileID: 6553534053444467541}
 --- !u!1 &7686979616193458595
 GameObject:
   m_ObjectHideFlags: 0

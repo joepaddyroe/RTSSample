@@ -21,8 +21,16 @@ public class UIGame : MonoBehaviour
     [SerializeField] private GameObject _uiConstructionPanel;
     [SerializeField] private GameObject _uiProductionPanel;
 
+    // resources panel
+    [SerializeField] private UIResourcePanel _uiResourcePanel;
+    
+    
     private Dictionary<ISelectableEntity, Vector2> _unitScreenSpaceCoordinates = new Dictionary<ISelectableEntity, Vector2>();
     private Camera _mainCamera;
+
+
+    public UIResourcePanel UIResourcePanel => _uiResourcePanel;
+    
     
     private void Awake()
     {
