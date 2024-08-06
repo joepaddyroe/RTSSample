@@ -27,7 +27,7 @@ public class UIProductionPanel : MonoBehaviour
     public void ProductionOptionClicked(ProductionPackage productionPackage)
     {
         if(productionPackage != null)
-            _unitProductionBuilding.StateMachine.SetState(new UnitProductionBuildingProductionState(_unitProductionBuilding, productionPackage));
+            GameManager.Instance.TryStartProductionProcess(_unitProductionBuilding, productionPackage);
         else
             Debug.Log("The production package was null");
     }

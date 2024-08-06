@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private UIGame _uiGame;
     [SerializeField] private PlayerInteractionManager _playerInteractionManager;
+    
     [SerializeField] private ConstructionPrefabsSO _constructionPrefabs;
 
     private static GameManager _instance;
@@ -46,10 +47,7 @@ public class GameManager : MonoBehaviour
         
         if (enoughGold && enoughLumber)
         {
-            // _currentGold -= package.GoldCost;
-            // _currentLumber -= package.LumberCost;
             _playerInteractionManager.SetPlacingConstructionState(package.Prefab, constructionType);
-            //_uiGame.UIResourcePanel.SetUIResources(_currentGold, _currentLumber);
         }
         else
         {
@@ -66,7 +64,6 @@ public class GameManager : MonoBehaviour
                 _uiGame.UIResourcePanel.FlashResourceDenied(ResourceType.Lumber);
         }
     }
-
     public void CompleteConstructionProcess(ConstructionType constructionType)
     {
         ConstructionPackage package = _constructionPrefabs.GetConstructionPackageByConstructionType(constructionType);
@@ -79,6 +76,37 @@ public class GameManager : MonoBehaviour
     {
         return _constructionPrefabs.GetConstructionPackageByConstructionType(constructionType);
     }
+    
+    
+    public void TryStartProductionProcess(UnitProductionBuilding unitProductionBuilding, ProductionPackage productionPackage)
+    {
+        bool enoughGold = _currentGold >= productionPackage.GoldCost;
+        bool enoughLumber = _currentLumber >= productionPackage.LumberCost;
+        
+        if (enoughGold && enoughLumber)
+        {
+            unitProductionBuilding.StateMachine.SetState(new UnitProductionBuildingProductionState(unitProductionBuilding, productionPackage));
+            _currentGold -= productionPackage.GoldCost;
+            _currentLumber -= productionPackage.LumberCost;
+            _uiGame.UIResourcePanel.SetUIResources(_currentGold, _currentLumber);
+        }
+        else
+        {
+            string failMessage = 
+                "Sorry, not enough " 
+                + (!enoughGold ? "Gold " : "") 
+                + (!enoughGold && !enoughLumber ? " and " : "") 
+                + (!enoughLumber ? "Lumber" : "");
+            Debug.Log(failMessage);
+            
+            if(!enoughGold)
+                _uiGame.UIResourcePanel.FlashResourceDenied(ResourceType.Gold);
+            if(!enoughLumber)
+                _uiGame.UIResourcePanel.FlashResourceDenied(ResourceType.Lumber);
+        }
+    }
+    
+    
 }
 
 public enum ConstructionType
