@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     }
     
 
-    public void StartConstruction(ConstructionType constructionType)
+    public void TryStartConstructionProcess(ConstructionType constructionType)
     {
         ConstructionPackage package = _constructionPrefabs.GetConstructionPackageByConstructionType(constructionType);
 
@@ -46,10 +46,10 @@ public class GameManager : MonoBehaviour
         
         if (enoughGold && enoughLumber)
         {
-            _currentGold -= package.GoldCost;
-            _currentLumber -= package.LumberCost;
-            _playerInteractionManager.SetPlacingConstructionState(package.Prefab);
-            _uiGame.UIResourcePanel.SetUIResources(_currentGold, _currentLumber);
+            // _currentGold -= package.GoldCost;
+            // _currentLumber -= package.LumberCost;
+            _playerInteractionManager.SetPlacingConstructionState(package.Prefab, constructionType);
+            //_uiGame.UIResourcePanel.SetUIResources(_currentGold, _currentLumber);
         }
         else
         {
@@ -65,6 +65,19 @@ public class GameManager : MonoBehaviour
             if(!enoughLumber)
                 _uiGame.UIResourcePanel.FlashResourceDenied(ResourceType.Lumber);
         }
+    }
+
+    public void CompleteConstructionProcess(ConstructionType constructionType)
+    {
+        ConstructionPackage package = _constructionPrefabs.GetConstructionPackageByConstructionType(constructionType);
+         _currentGold -= package.GoldCost;
+         _currentLumber -= package.LumberCost;
+        _uiGame.UIResourcePanel.SetUIResources(_currentGold, _currentLumber);
+    }
+
+    public ConstructionPackage GetConstructionPackageByType(ConstructionType constructionType)
+    {
+        return _constructionPrefabs.GetConstructionPackageByConstructionType(constructionType);
     }
 }
 

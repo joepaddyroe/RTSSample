@@ -65684,6 +65684,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 882795064878751894, guid: 92d7d6a7d2de105458589208cbbd6e7d, type: 3}
+      propertyPath: _uiGame
+      value: 
+      objectReference: {fileID: 1452565931}
+    - target: {fileID: 882795064878751894, guid: 92d7d6a7d2de105458589208cbbd6e7d, type: 3}
+      propertyPath: _currentGold
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 882795064878751894, guid: 92d7d6a7d2de105458589208cbbd6e7d, type: 3}
+      propertyPath: _currentLumber
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3391040798893662489, guid: 92d7d6a7d2de105458589208cbbd6e7d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

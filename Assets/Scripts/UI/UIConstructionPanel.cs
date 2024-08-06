@@ -28,7 +28,7 @@ public class UIConstructionPanel : MonoBehaviour
     {
         if(constructionPackage != null)
             //_constructionProducingUnit.StateMachine.SetState(new ConstructionProducingUnitConstructingState(_constructionProducingUnit, constructionPackage));
-            _gameManager.StartConstruction(constructionPackage.ConstructionType);
+            _gameManager.TryStartConstructionProcess(constructionPackage.ConstructionType);
         else
             Debug.Log("The construction package was null");
         

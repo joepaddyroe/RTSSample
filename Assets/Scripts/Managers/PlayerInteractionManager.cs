@@ -63,9 +63,9 @@ public class PlayerInteractionManager : MonoBehaviour
         _playerInteractionStateMachine.SetState(new PlayerInteractionBasicSelectionState(this));
     }
 
-    public void SetPlacingConstructionState(GameObject _constructionPrefab)
+    public void SetPlacingConstructionState(GameObject _constructionPrefab, ConstructionType constructionType)
     {
-        _playerInteractionStateMachine.SetState(new PlayerInteractionPlacingConstructionState(this, _constructionPrefab));
+        _playerInteractionStateMachine.SetState(new PlayerInteractionPlacingConstructionState(this, constructionType, _constructionPrefab));
     }
 
     public void PlacedConstructionSite(BuildingBase targetConstruction, Vector3 targetBuildSite)

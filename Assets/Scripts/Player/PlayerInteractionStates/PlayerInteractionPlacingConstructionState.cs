@@ -10,11 +10,13 @@ public class PlayerInteractionPlacingConstructionState : PlayerInteractionStateB
     private GameObject _constructionPrefab;
     private GameObject _construction;
     private Camera _mainCamera;
+    private ConstructionType _constructionType;
     
-    public PlayerInteractionPlacingConstructionState(PlayerInteractionManager playerInteractionManager, GameObject constructionPrefab)
+    public PlayerInteractionPlacingConstructionState(PlayerInteractionManager playerInteractionManager, ConstructionType constructionType, GameObject constructionPrefab)
     {
         _playerInteractionManager = playerInteractionManager;
         _constructionPrefab = constructionPrefab;
+        _constructionType = constructionType;
     }
 
     public override void Tick()
@@ -28,6 +30,7 @@ public class PlayerInteractionPlacingConstructionState : PlayerInteractionStateB
         if (Input.GetMouseButtonDown(0))
         {
             PlaceConstructionAtPosition();
+            GameManager.Instance.CompleteConstructionProcess(_constructionType);
         }
         
         if (Input.GetMouseButtonDown(1))
