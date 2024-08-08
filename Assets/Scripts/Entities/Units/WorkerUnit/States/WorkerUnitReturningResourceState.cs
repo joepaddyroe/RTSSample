@@ -42,7 +42,7 @@ public class WorkerUnitReturningResourceState : StateBase
         base.Enter();
 
         BuildingBase closestTownHall =
-            EntityManager.Instance.GetClosestBuilding(_workerUnit.transform.position, BuildingType.TownHall, true);
+            EntityManager.Instance.GetClosestBuilding(_workerUnit.transform.position, ConstructionType.TownHall, true);
 
         _townHallLocation = _workerUnit.transform.position - new Vector3(3, 0, 0);
         

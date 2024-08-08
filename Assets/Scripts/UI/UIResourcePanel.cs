@@ -6,14 +6,21 @@ public class UIResourcePanel : MonoBehaviour
 {
     [SerializeField] private TMP_Text _goldValue;
     [SerializeField] private TMP_Text _lumberValue;
+    [SerializeField] private TMP_Text _foodValue;
 
     private float _goldDeniedTimer;
     private float _lumberDeniedTimer;
+    private float _foodDeniedTimer;
     
     public void SetUIResources(int gold, int lumber)
     {
         _goldValue.text = gold.ToString();
         _lumberValue.text = lumber.ToString();
+    }
+
+    public void SetFoodValue(int foodConsumed, int food)
+    {
+        _foodValue.text = foodConsumed + "/" + food;
     }
 
     public void FlashResourceDenied(ResourceType type)
@@ -27,6 +34,10 @@ public class UIResourcePanel : MonoBehaviour
             case ResourceType.Lumber:
                 _lumberDeniedTimer = 2;
                 _lumberValue.color = Color.red;
+                break;
+            case ResourceType.Food:
+                _foodDeniedTimer = 2;
+                _foodValue.color = Color.red;
                 break;
         }
     }
@@ -49,6 +60,15 @@ public class UIResourcePanel : MonoBehaviour
             {
                 _lumberDeniedTimer = 0;
                 _lumberValue.color = Color.white;
+            }
+        }
+        if (_foodDeniedTimer > 0)
+        {
+            _foodDeniedTimer -= Time.deltaTime;
+            if (_foodDeniedTimer <= 0)
+            {
+                _foodDeniedTimer = 0;
+                _foodValue.color = Color.white;
             }
         }
     }

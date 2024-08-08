@@ -25,5 +25,6 @@ public class ProductionPackage
     public GameObject Prefab;
     public int GoldCost;
     public int LumberCost;
+    public int FoodCost;
     public float ProductionTime;
 }

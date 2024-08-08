@@ -11,12 +11,12 @@ public class BuildingBase : EntityBase, IWorkTargetEntity
     protected bool _constructed;
     protected float _constructionProgress;
     
-    [SerializeField] private BuildingType _buildingType;
+    [SerializeField] private ConstructionType _constructionType;
     [SerializeField] protected bool _preConstructed;
     [SerializeField] protected float _constructionProgressTarget;
     [SerializeField] protected Animator _animator;
 
-    public BuildingType BuildingType => _buildingType;
+    public ConstructionType ConstructionType => _constructionType;
     public bool Constructed => _constructed;
     
     public void Start()
@@ -39,10 +39,24 @@ public class BuildingBase : EntityBase, IWorkTargetEntity
         }
         else
         {
-            _constructed = true;
-            _animator.SetFloat("Construction", _constructionProgress/_constructionProgressTarget);
+            if (!_constructed)
+            {
+                _constructed = true;
+                _animator.SetFloat("Construction", _constructionProgress/_constructionProgressTarget);
+                ConstructionComplete();
+            }
             return true;
         }
+    }
+
+    public virtual void ConstructionComplete()
+    {
+        
+    }
+    
+    public virtual void ConstructionDestroyed()
+    {
+        
     }
 
     public GameObject GetWorkTarget()

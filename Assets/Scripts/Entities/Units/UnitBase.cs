@@ -6,10 +6,10 @@ using UnityEngine.AI;
 public class UnitBase : EntityBase, IMoveableEntity
 {
 
-    [SerializeField] private UnitType _unitType;
+    [SerializeField] private ProductionType _unitType;
     [SerializeField] private NavMeshAgent _agent;
 
-    public UnitType UnitType => _unitType;
+    public ProductionType UnitType => _unitType;
     public NavMeshAgent Agent => _agent;
 
     protected UISelectedUnit _uiSelectedUnit;
