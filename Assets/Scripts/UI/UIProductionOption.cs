@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UIProductionOption : MonoBehaviour
+public class UIProductionOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _productionLabel;
 
@@ -24,5 +25,15 @@ public class UIProductionOption : MonoBehaviour
     public void OnOptionClicked()
     {
         _uiProductionPanel.ProductionOptionClicked(_productionPackage);
+    }
+    
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _uiProductionPanel.ProductionOptionHovered(_productionPackage);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _uiProductionPanel.ProductionOptionExited();
     }
 }

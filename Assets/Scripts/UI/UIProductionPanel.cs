@@ -7,6 +7,7 @@ public class UIProductionPanel : MonoBehaviour
     [SerializeField] private RectTransform _optionsPanel;
     [SerializeField] private GameObject _uiProductionOptionPrefab;
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private UIProductionPackageCosts _productionPackageCosts;
     
     private UnitProductionBuilding _unitProductionBuilding;
     private List<ProductionPackage> _productionPackages;
@@ -30,6 +31,17 @@ public class UIProductionPanel : MonoBehaviour
             GameManager.Instance.TryStartProductionProcess(_unitProductionBuilding, productionPackage);
         else
             Debug.Log("The production package was null");
+    }
+
+    public void ProductionOptionHovered(ProductionPackage productionPackage)
+    {
+        _productionPackageCosts.gameObject.SetActive(true);
+        _productionPackageCosts.SetValues(productionPackage.GoldCost, productionPackage.LumberCost, productionPackage.FoodCost);
+    }
+    
+    public void ProductionOptionExited()
+    {
+        _productionPackageCosts.gameObject.SetActive(false);
     }
 
     private void PopulateUI()

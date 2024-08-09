@@ -17,4 +17,5 @@ MonoBehaviour:
     Prefab: {fileID: 6404653409571579245, guid: 9fb2fcc89e7c32f4999bb11f07d22da0, type: 3}
     GoldCost: 500
     LumberCost: 0
+    FoodCost: 2
     ProductionTime: 6

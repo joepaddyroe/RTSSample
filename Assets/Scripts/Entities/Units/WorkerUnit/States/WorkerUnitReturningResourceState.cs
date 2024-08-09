@@ -15,7 +15,7 @@ public class WorkerUnitReturningResourceState : StateBase
     {
         base.Tick();
 
-        if (Vector3.Distance(_townHallLocation, _workerUnit.transform.position) < 2f)
+        if (Vector3.Distance(_townHallLocation, _workerUnit.transform.position) < 3f)
         {
 
             switch (_workerUnit.CurrentResourceType)

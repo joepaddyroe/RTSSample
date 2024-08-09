@@ -19,7 +19,7 @@ public class WorkerUnitMovingToConstructionState : StateBase
     {
         base.Tick();
 
-        if (Vector3.Distance(_targetBuildSitePosition, _workerUnit.transform.position) < 2f)
+        if (Vector3.Distance(_targetBuildSitePosition, _workerUnit.transform.position) < 3f)
         {
             _workerUnit.GoToConstructionState(_targetConstruction);
         }
