@@ -70,4 +70,10 @@ public class FootmanManager : UnitBase
     {
         GoToTravellingState(location);
     }
+    
+    public override void Die()
+    {
+        base.Die();
+        StateMachine.SetState(new FootmanDeadState(this));
+    }
 }

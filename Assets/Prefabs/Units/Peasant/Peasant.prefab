@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entitySelectionUI: {fileID: 3916928653562433394, guid: 8c1153bc23689b14da818dbdf7741323, type: 3}
   _name: Peasant
-  _health: 20
+  _health: 6
   _teamID: 0
   _unitType: 0
   _alive: 1

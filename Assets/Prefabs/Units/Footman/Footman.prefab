@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entitySelectionUI: {fileID: 3916928653562433394, guid: c2c415015410dd94fbf9f22e8efb202b, type: 3}
   _name: Footman
-  _health: 50
+  _health: 10
   _teamID: 0
   _unitType: 1
   _alive: 1
