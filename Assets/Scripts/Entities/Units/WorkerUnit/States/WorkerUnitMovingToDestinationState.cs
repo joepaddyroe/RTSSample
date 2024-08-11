@@ -15,7 +15,7 @@ public class WorkerUnitMovingToDestinationState : StateBase
     {
         base.Tick();
 
-        if (Vector3.Distance(_workerUnit.CurrentDestination, _workerUnit.transform.position) < 0.1f)
+        if (Vector3.Distance(_workerUnit.CurrentDestination, _workerUnit.transform.position) < 1.5f)
         {
             _workerUnit.StateMachine.SetState(new WorkerUnitIdleState(_workerUnit));
         }

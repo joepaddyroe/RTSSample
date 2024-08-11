@@ -14,6 +14,9 @@ public class FootmanManager : UnitBase
 
     [SerializeField] private float _attackInterval;
     [SerializeField] private float _attackPoint;
+
+    public float AttackInterval => _attackInterval;
+    public float AttackPoint => _attackPoint;
     
     // Start is called before the first frame update
     void Awake()

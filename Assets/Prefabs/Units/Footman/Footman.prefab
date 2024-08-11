@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 549429957986065120}
   - component: {fileID: 1110509601515842795}
   - component: {fileID: 8536263054417446021}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Footman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,8 +315,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySelectionUI: {fileID: 3916928653562433394, guid: c2c415015410dd94fbf9f22e8efb202b, type: 3}
+  _name: Footman
+  _health: 50
+  _teamID: 0
   _unitType: 1
+  _alive: 1
   _agent: {fileID: 8536263054417446021}
+  _enemyCheckFrequency: 0.5
+  _enemyCheckRange: 10
+  _enemyCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _characterSprite: {fileID: 6189680621543547821}
   _attackInterval: 2
   _attackPoint: 2
 --- !u!195 &8536263054417446021

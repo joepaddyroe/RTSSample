@@ -58,6 +58,7 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
     {
         _stateMachine.Tick();
         UpdateScreenSpaceCoordinate(this);
+        
     }
 
     public void GoToIdlState()
@@ -219,5 +220,11 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
     public void GatherLumber(int amount)
     {
         _carryingLumberAmount = amount;
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        StateMachine.SetState(new WorkerUnitDeadState(this));
     }
 }

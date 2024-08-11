@@ -15,7 +15,7 @@ public class FootmanMovingToDestinationState : StateBase
     {
         base.Tick();
 
-        if (Vector3.Distance(_footmanManager.CurrentDestination, _footmanManager.transform.position) < 0.1f)
+        if (Vector3.Distance(_footmanManager.CurrentDestination, _footmanManager.transform.position) < 1.5f)
         {
             _footmanManager.StateMachine.SetState(new FootmanIdleState(_footmanManager));
         }

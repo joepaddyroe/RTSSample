@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 549429957986065120}
   - component: {fileID: 4661813847759685676}
   - component: {fileID: 8536263054417446021}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Peasant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,8 +207,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySelectionUI: {fileID: 3916928653562433394, guid: 8c1153bc23689b14da818dbdf7741323, type: 3}
+  _name: Peasant
+  _health: 20
+  _teamID: 0
   _unitType: 0
+  _alive: 1
   _agent: {fileID: 8536263054417446021}
+  _enemyCheckFrequency: 0.5
+  _enemyCheckRange: 6
+  _enemyCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _characterSprite: {fileID: 3027696705365749154}
   _constructionPrefabsSO: {fileID: 11400000, guid: 9c0c0c8b70a2d5541bb843ddf364020b, type: 2}
   _constructionInterval: 2
   _constructionPoint: 1

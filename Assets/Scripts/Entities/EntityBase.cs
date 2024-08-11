@@ -8,16 +8,16 @@ public class EntityBase : MonoBehaviour, ISelectableEntity
     
     // shared
     [SerializeField] protected GameObject _entitySelectionUI;
+    [SerializeField] protected string _name;
+    [SerializeField] protected float _health;
+    [SerializeField] protected int _teamID;
     
-    protected float _name;
-    protected float _health;
-    protected string _team;
     protected bool _selected;
     
     protected UIGame _uiGame;
 
     public bool IsSelected => _selected;
-    
+    public int TeamID => _teamID;
     
     public virtual void Init()
     {
