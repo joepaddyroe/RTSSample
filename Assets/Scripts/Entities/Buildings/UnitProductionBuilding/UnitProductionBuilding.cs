@@ -51,4 +51,11 @@ public class UnitProductionBuilding : BuildingBase
         base.DeSelect();
         _uiGame.SetUnitProductionBuildingSelected(false);
     }
+    
+    public override void DestroyOrDie()
+    {
+        base.DestroyOrDie();
+        //ConstructionDestroyed();
+        Destroy(gameObject, 2);
+    }
 }

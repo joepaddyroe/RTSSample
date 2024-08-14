@@ -5,9 +5,9 @@ using UnityEngine;
 public class FootmanMovingToAttackState : StateBase
 {
     private FootmanManager _footmanManager;
-    private UnitBase _attackTarget;
+    private EntityBase _attackTarget;
     
-    public FootmanMovingToAttackState(FootmanManager footmanManager, UnitBase attackTarget)
+    public FootmanMovingToAttackState(FootmanManager footmanManager, EntityBase attackTarget)
     {
         _footmanManager = footmanManager;
         _attackTarget = attackTarget;

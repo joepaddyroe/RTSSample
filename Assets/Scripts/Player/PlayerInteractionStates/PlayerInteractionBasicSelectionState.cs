@@ -178,6 +178,17 @@ public class PlayerInteractionBasicSelectionState : PlayerInteractionStateBase
                             }
                         }
                     }
+                    
+                    ICanAttackEntity attackUnit = entity as ICanAttackEntity;
+                    if (attackUnit != null)
+                    {
+                        if ((entity as EntityBase).TeamID != (clicked as EntityBase).TeamID)
+                        {
+                            attackUnit.Attack(clicked as EntityBase);
+                            unitsInteracted = true;
+                        }
+                    }
+                    
                 }
                 return unitsInteracted;
             }

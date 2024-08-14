@@ -5,11 +5,11 @@ using UnityEngine;
 public class FootmanAttackState : StateBase
 {
     private FootmanManager _footmanManager;
-    private UnitBase _attackTarget;
+    private EntityBase _attackTarget;
     
     private float _attackTimer = 0;
     
-    public FootmanAttackState(FootmanManager footmanManager, UnitBase attackTarget)
+    public FootmanAttackState(FootmanManager footmanManager, EntityBase attackTarget)
     {
         _footmanManager = footmanManager;
         _attackTarget = attackTarget;
@@ -22,7 +22,7 @@ public class FootmanAttackState : StateBase
         if (_attackTarget == null)
             _footmanManager.StateMachine.SetState(new FootmanIdleState(_footmanManager));
         
-        if(!_attackTarget.Alive)
+        if(!_attackTarget.Functioning)
             _footmanManager.StateMachine.SetState(new FootmanIdleState(_footmanManager));
         
         if (Vector3.Distance(_attackTarget.transform.position, _footmanManager.transform.position) > 2f)

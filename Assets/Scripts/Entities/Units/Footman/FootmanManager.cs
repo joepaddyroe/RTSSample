@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FootmanManager : UnitBase
+public class FootmanManager : UnitBase, ICanAttackEntity
 {
     // state
     private StateMachine _stateMachine;
@@ -71,9 +71,19 @@ public class FootmanManager : UnitBase
         GoToTravellingState(location);
     }
     
-    public override void Die()
+    public override void DestroyOrDie()
     {
-        base.Die();
+        base.DestroyOrDie();
         StateMachine.SetState(new FootmanDeadState(this));
+    }
+
+    public bool Attack(EntityBase entity)
+    {
+        if (entity)
+        {
+            _stateMachine.SetState(new FootmanMovingToAttackState(this, entity));
+            return true;
+        }
+        return false;
     }
 }

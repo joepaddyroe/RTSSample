@@ -210,8 +210,9 @@ MonoBehaviour:
   _name: Peasant
   _health: 6
   _teamID: 0
+  _functioning: 1
   _unitType: 0
-  _alive: 1
+  alive: 1
   _agent: {fileID: 8536263054417446021}
   _enemyCheckFrequency: 0.5
   _enemyCheckRange: 6

@@ -7,7 +7,7 @@ public class UnitBase : EntityBase, IMoveableEntity
 {
 
     [SerializeField] private ProductionType _unitType;
-    [SerializeField] private bool _alive;
+    [SerializeField] protected bool alive = true;
 
     
     [SerializeField] private NavMeshAgent _agent;
@@ -26,7 +26,7 @@ public class UnitBase : EntityBase, IMoveableEntity
 
     public GameObject CharacterSprite => _characterSprite;
 
-    public bool Alive => _alive;
+    public bool Alive => alive;
     
     protected UISelectedUnit _uiSelectedUnit;
 
@@ -75,29 +75,5 @@ public class UnitBase : EntityBase, IMoveableEntity
             }
         }
         return closestUnit;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        if (!Alive)
-            return;
-        
-        if (_health > damage)
-        {
-            _health -= damage;
-        }
-        else
-        {
-            _health = 0;
-            _alive = false;
-            Die();
-        }
-        
-        Debug.Log("Hit! " + _health);
-    }
-
-    public virtual void Die()
-    {
-        
     }
 }

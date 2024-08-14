@@ -222,9 +222,11 @@ public class WorkerUnit : UnitBase, IWorkAssignableEntity, IResourceGatheringAss
         _carryingLumberAmount = amount;
     }
 
-    public override void Die()
+    public override void DestroyOrDie()
     {
-        base.Die();
+        base.DestroyOrDie();
         StateMachine.SetState(new WorkerUnitDeadState(this));
+        alive = false;
+        Debug.Log("Worker should die");
     }
 }
